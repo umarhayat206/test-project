@@ -4,8 +4,15 @@
 
 Rails.application.routes.draw do
   namespace :v1 do
-    get 'arc_gis', to: 'arc_gis#index'
-    get 'arc_gis/get_species', to: 'arc_gis#get_species'
-    get 'arc_gis/get_locations', to: 'arc_gis#get_locations'
+    resources :species, only: [:index, :show] do 
+      collection do
+        get :get_locations
+      end
+    end
+    resources :locations, only: [:index, :show] do 
+      collection do
+        get :get_species
+      end
+    end
   end
 end
