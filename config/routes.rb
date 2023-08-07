@@ -4,6 +4,6 @@
 
 Rails.application.routes.draw do
   namespace :v1 do
-    get 'arc_gis/get_data', to: 'arc_gis#dataset'
+    get 'arc_gis', to: 'arc_gis#index'
   end
 end
