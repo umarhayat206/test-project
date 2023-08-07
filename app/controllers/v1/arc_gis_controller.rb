@@ -23,5 +23,25 @@ module V1
       return render json: { data: species_with_locations }
     end
 
+    def get_species
+      if params['location_id']
+        location = Location.find_by(id: params['location_id'])
+        if location
+          species = location.species
+          return render json: { species: species, location: location }   
+        end
+      end
+    end
+
+    def get_locations
+      if params['specie_id']
+        specie = Species.find_by(id: params['specie_id'])
+        if specie
+          locations = specie.locations
+          return render json: { location: locations, specie: specie }
+        end
+      end
+    end
+
   end
 end
